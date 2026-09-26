@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var \Magento\Catalog\Block\Product\View $block
+ * @var \BroCode\ScreenAwake\ViewModel\ScreenAwake $viewModel
+ */
+$viewModel = $block->getData('view_model');
+?>
+<?php if ($viewModel->isEnabledForProduct($block->getProduct())): ?>
+    <?= $block->getChildHtml('screen.awake.product.button') ?>
+<?php endif; ?>

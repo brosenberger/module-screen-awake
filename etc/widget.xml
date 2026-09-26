@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="brocode_screen_awake_button" class="BroCode\ScreenAwake\Block\Widget\Button">
+        <label translate="true">Keep Screen On Button</label>
+        <description translate="true">Lets visitors keep their phone screen awake while they follow the page.</description>
+    </widget>
+</widgets>

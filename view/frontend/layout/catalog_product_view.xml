@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="screen.awake.product"
+                   template="BroCode_ScreenAwake::product/button.phtml" after="product.info.overview">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">BroCode\ScreenAwake\ViewModel\ScreenAwake</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\Template" name="screen.awake.product.button"
+                       template="BroCode_ScreenAwake::button.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
