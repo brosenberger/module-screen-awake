@@ -2,7 +2,7 @@
     "name": "brocode/module-screen-awake",
     "description": "A \"Keep screen on\" button for Magento 2 product and CMS pages: keeps the customer's phone screen awake while they follow assembly, care or installation instructions, using the browser's Screen Wake Lock API.",
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/brosenberger/module-screen-awake",
     "keywords": [
@@ -33,6 +33,7 @@
     ],
     "require": {
         "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0",
+        "brocode/module-entityservices": "^1.6",
         "magento/framework": ">=103.0.0",
         "magento/module-catalog": ">=104.0.0",
         "magento/module-eav": ">=102.0.0",

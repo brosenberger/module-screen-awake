@@ -62,6 +62,8 @@ document.addEventListener('screenawake:change', (e) => {
 ## Requirements and limits
 
 - Magento 2.4.x, PHP 8.1–8.4. Verified on 2.4.8-p5 with Luma.
+- [`brocode/module-entityservices`](https://github.com/brosenberger/module-entityservices)
+  creates the product attribute; Composer installs it automatically.
 - **Luma-based themes.** Hyvä doesn't load RequireJS components, so a Hyvä store needs
   a small compatibility template (an Alpine `x-data` wrapper around the same logic).
   That template isn't included.

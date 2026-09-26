@@ -29,9 +29,9 @@ declare(strict_types=1);
 
 namespace BroCode\ScreenAwake\Setup\Patch\Data;
 
+use BroCode\EntityServices\Model\EntityServiceFactory;
 use BroCode\ScreenAwake\ViewModel\ScreenAwake;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
 use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -49,40 +49,55 @@ class AddScreenAwakeButtonAttribute implements DataPatchInterface, PatchRevertab
     private $moduleDataSetup;
 
     /**
+     * @var EntityServiceFactory
+     */
+    private $entityServiceFactory;
+
+    /**
      * @var EavSetupFactory
      */
     private $eavSetupFactory;
 
-    public function __construct(ModuleDataSetupInterface $moduleDataSetup, EavSetupFactory $eavSetupFactory)
-    {
+    public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
+        EntityServiceFactory $entityServiceFactory,
+        EavSetupFactory $eavSetupFactory
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
+        $this->entityServiceFactory = $entityServiceFactory;
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
     public function apply(): self
     {
-        $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $eavSetup->addAttribute(Product::ENTITY, ScreenAwake::PRODUCT_ATTRIBUTE, [
-            'type' => 'int',
-            'label' => "Show 'Keep Screen On' Button",
-            'input' => 'boolean',
-            'source' => Boolean::class,
-            'default' => '0',
-            'global' => Attribute::SCOPE_STORE,
-            'required' => false,
-            'user_defined' => true,
-            'visible_on_front' => false,
-            'used_in_product_listing' => false,
-            'searchable' => false,
-            'filterable' => false,
-            'comparable' => false,
-            'group' => 'Content',
-            'sort_order' => 90,
-        ]);
+        $this->moduleDataSetup->startSetup();
+        $this->entityServiceFactory
+            ->createAttributeBuilder($this->moduleDataSetup)
+            ->withProductAttribute(ScreenAwake::PRODUCT_ATTRIBUTE)
+            ->withTypeInt()
+            ->withInputBoolean()
+            ->withSource(Boolean::class)
+            ->withLabel("Show 'Keep Screen On' Button")
+            ->withDefault('0')
+            ->withStoreScope()
+            ->inGroup('Content')
+            ->withSortOrder(90)
+            ->asRequired(false)
+            ->asUserDefined(true)
+            ->asVisibleOnFront(false)
+            ->asUsedInProductListing(false)
+            ->asSearchable(false)
+            ->asFilterable(false)
+            ->asComparable(false)
+            ->build();
+        $this->moduleDataSetup->endSetup();
 
         return $this;
     }
 
+    /**
+     * EntityServices builds attributes but has no removal, so the revert uses EavSetup.
+     */
     public function revert(): void
     {
         $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup])

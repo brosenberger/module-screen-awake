@@ -5,6 +5,7 @@
         <sequence>
             <module name="Magento_Catalog"/>
             <module name="Magento_Widget"/>
+            <module name="BroCode_EntityServices"/>
         </sequence>
     </module>
 </config>
