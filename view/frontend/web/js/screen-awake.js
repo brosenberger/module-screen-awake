@@ -1,4 +1,4 @@
-/**
+j/**
  * Keeps the screen awake while the customer wants it, via the Screen Wake Lock API.
  * The browser drops the lock whenever the page is hidden; it is requested again
  * when the page becomes visible. Unsupported browsers never see the button.

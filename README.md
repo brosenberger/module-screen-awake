@@ -7,7 +7,7 @@ guides, a recipe on a kitchenware product. It uses the browser's
 The customer taps the button once and the screen stays on until they tap it again or
 leave the page.
 
-**Background article:** [brocode.at/blog/screen-wake-lock-product-pages/](https://brocode.at/blog/screen-wake-lock-product-pages/)
+**Module page:** [brocode.at/modules/module-screen-awake/](https://brocode.at/modules/module-screen-awake/)
 
 ```bash
 composer require brocode/module-screen-awake
